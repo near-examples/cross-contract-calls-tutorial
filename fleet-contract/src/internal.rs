@@ -56,7 +56,7 @@ pub(crate) fn convert_position_to_coords (
 }
 
 impl Fleet {
-    //add a token to the set of tokens an owner has
+    //populate the board state with initial coordinates for the ship
     pub(crate) fn internal_populate_board_state(
         &mut self,
         ship_positions: Vec<String>
@@ -68,8 +68,7 @@ impl Fleet {
         let first_coord = convert_position_to_coords(&ship_positions[0]);
         let second_coord = convert_position_to_coords(&ship_positions[1]);
 
-        env::log_str(&format!("First Post {} - Second Pos {}", first_coord, second_coord));
-        //check for invalid positions ie diagonal
+        //check for invalid positions. i.e - diagonal or non-adjacent ship positions
         if (second_coord as i32 - first_coord as i32).abs() != 4 &&  (second_coord as i32 - first_coord as i32).abs() != 1 {
             env::panic_str("Invalid ship positions - must place adjacent positions.")
         }

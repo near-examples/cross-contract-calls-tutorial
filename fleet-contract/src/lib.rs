@@ -1,6 +1,6 @@
 use near_sdk::borsh::{self, BorshDeserialize, BorshSerialize};
 use near_sdk::{
-    env, near_bindgen, AccountId, PanicOnDefault, Promise, PromiseOrValue, promise_result_as_success
+    env, near_bindgen, AccountId, PanicOnDefault, PromiseOrValue, promise_result_as_success
 };
 
 pub use crate::fire::*;
@@ -56,7 +56,7 @@ impl Fleet {
         }
 
         //create a variable of type Self with all the fields initialized. 
-        let mut this = Self {
+        let this = Self {
             //set the owner_id field equal to the passed in owner_id. 
             owner_id: owner_id.to_string(),
 
@@ -84,6 +84,4 @@ impl Fleet {
         //return the Contract object
         this
     }
-
-    
 }

@@ -8,16 +8,6 @@ trait ExternalFleetReceiver {
         &mut self,
         coordinate: u32
     ) -> Promise;
-
-    //Method stored on the receiver contract that is called via cross contract call when nft_transfer_call is called
-    /// Returns `true` if the token should be returned back to the sender.
-    fn on_create_new_game(
-        &mut self,
-        //who you wanna play against
-        desired_opponent: AccountId,
-        //set of initial ship positions as strings IE - [A3, A4]
-        initial_ship_positions: Vec<String>,
-    ) -> Promise;
 }
 
 #[ext_contract(ext_self)]
@@ -29,14 +19,5 @@ trait FleetResolver {
     */
     fn resolve_fire(
         &mut self,
-        coordinate: u32
-    ) -> bool;
-
-    fn resolve_create_new_game(
-        &mut self,
-        //who you wanna play against
-        desired_opponent: AccountId,
-        //set of initial ship positions as strings IE - [A3, A4]
-        initial_ship_positions: Vec<String>,
     ) -> bool;
 }

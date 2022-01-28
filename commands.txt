@@ -1,0 +1,57 @@
+near call $pirates new '{"owner_id": "'$pirates'", "current_player": "benjiman.testnet", "fleet_type": "pirates"}' --accountId $pirates
+near call $vikings new '{"owner_id": "'$vikings'", "current_player": "benjiman.testnet", "fleet_type": "vikings"}' --accountId $vikings
+
+near view $pirates get_cur_turn
+near view $vikings get_cur_turn
+near view $pirates get_board_state
+near view $vikings get_board_state
+near view $pirates get_cur_commanders
+near view $vikings get_cur_commanders
+
+//SHOULD FAIL
+near call $pirates fire '{"position": "A1", "fleet_id": "'$vikings'"}' --accountId benjiman.testnet --gas 200000000000000
+
+near call $pirates create_new_game '{"desired_opponent": "benjiman.testnet", "initial_ship_positions": ["A1", "A2"]}' --accountId benjiman.testnet
+near call $vikings create_new_game '{"desired_opponent": "benjiman.testnet", "initial_ship_positions": ["B1", "B2"]}' --accountId benjiman.testnet
+
+near view $pirates get_cur_turn
+near view $vikings get_cur_turn
+near view $pirates get_board_state
+near view $vikings get_board_state
+near view $pirates get_cur_commanders
+near view $vikings get_cur_commanders
+
+
+SHOULD FAIL (not your turn)
+near call $pirates fire '{"position": "A1", "fleet_id": "'$vikings'"}' --accountId benjiman.testnet --gas 200000000000000
+
+near call $vikings fire '{"position": "A1", "fleet_id": "'$pirates'"}' --accountId benjiman.testnet --gas 200000000000000
+
+near view $pirates get_cur_turn
+near view $vikings get_cur_turn
+
+near view $pirates get_board_state
+
+SHOULD FAIL (cannot fire on same position twice)
+near call $pirates fire '{"position": "A1", "fleet_id": "'$vikings'"}' --accountId benjiman.testnet --gas 200000000000000
+
+near view $pirates get_cur_turn
+near view $vikings get_cur_turn
+
+near call $pirates fire '{"position": "A2", "fleet_id": "'$vikings'"}' --accountId benjiman.testnet --gas 200000000000000
+
+near view $pirates get_cur_turn
+near view $vikings get_cur_turn
+
+near view $vikings get_board_state
+
+
+near call $vikings fire '{"position": "A2", "fleet_id": "'$pirates'"}' --accountId benjiman.testnet --gas 200000000000000
+
+near view $pirates get_cur_turn
+near view $vikings get_cur_turn
+
+near view $pirates get_board_state
+near view $vikings get_board_state
+
+near call $pirates fire '{"position": "A3", "fleet_id": "'$vikings'"}' --accountId benjiman.testnet --gas 200000000000000

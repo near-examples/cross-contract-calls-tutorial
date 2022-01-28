@@ -7,12 +7,12 @@ impl Fleet {
         self.current_turn
     }
 
-    //Check who is the current player
+    //Check who the current commanders are
     pub fn get_cur_commanders(self) -> String {
         format!("Pirate Commander --> {:?} Viking Commander --> {:?}", self.pirate_commander, self.viking_commander)
     }
 
-    //Check who is the current player
+    //Check the current state of the board
     pub fn get_board_state(self) -> Vec<String> {
         self.board_state
     }

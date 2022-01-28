@@ -45,8 +45,8 @@ pub struct Fleet {
 impl Fleet {
     /*
         initialization function (can only be called once).
-        this initializes the contract with metadata that was passed in and
-        the owner_id. 
+        sets the contract owner and current player for the specific fleet type.
+        Sets the current turn to pirates by default.
     */
     #[init]
     pub fn new(owner_id: AccountId, current_player: AccountId, fleet_type: String) -> Self {
@@ -78,6 +78,7 @@ impl Fleet {
             //set the ship to have 0 holes to start
             num_holes: 0,
 
+            //set the fleet type to whatever is passed in
             fleet_type
         };
 

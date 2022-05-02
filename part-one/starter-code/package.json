@@ -5,6 +5,6 @@
     "author": "Ben Kurrek",
     "license": "ISC",
     "scripts": {
-        "build": "cd finished-code && yarn build && cd ../starter-code && yarn build && cd .."
+        "build": "cd receiver && bash build.sh && cd ../sender && bash build.sh cd ../.."
     }
 }

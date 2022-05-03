@@ -1,0 +1,10 @@
+{
+    "name": "nft-tutorial",
+    "version": "1.0.0",
+    "description": "Zero to Hero Cross Contract Call Tutorial",
+    "author": "Ben Kurrek",
+    "license": "ISC",
+    "scripts": {
+        "build": "cd receiver && bash build.sh && cd ../sender && bash build.sh cd ../.."
+    }
+}
